@@ -371,7 +371,7 @@ const en: Locale = {
       {
         title: "Developers",
         links: [
-          { label: "GitHub", href: "https://github.com/tlsweep", external: true },
+          { label: "GitHub", href: "https://github.com/TLSweep/probe", external: true },
           { label: "Docs", href: "/docs" },
           { label: "API", href: "#data" },
           { label: "Merkle verification", href: "#how-it-works" },

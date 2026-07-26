@@ -355,7 +355,7 @@ const ko: Locale = {
       {
         title: "개발자",
         links: [
-          { label: "GitHub", href: "https://github.com/tlsweep", external: true },
+          { label: "GitHub", href: "https://github.com/TLSweep/probe", external: true },
           { label: "문서", href: "/docs" },
           { label: "API", href: "#data" },
           { label: "Merkle 검증", href: "#how-it-works" },

@@ -61,6 +61,6 @@ export const dockerCommand = `docker run --name tlsweep-probe \\
   -e GATEWAY_URL=https://gateway.tlsweep.example \\
   tlsweep/probe:latest`;
 
-export const cloneCommand = "git clone https://github.com/tlsweep/probe";
+export const cloneCommand = "git clone https://github.com/TLSweep/probe";
 
-export const ghUrl = "https://github.com/tlsweep";
+export const ghUrl = "https://github.com/TLSweep/probe";

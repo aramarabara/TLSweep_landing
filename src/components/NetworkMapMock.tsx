@@ -1,4 +1,5 @@
 import { cn } from "@/utils/cn";
+import { useLocale } from "@/lib/locales";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 
 interface Region {
@@ -58,6 +59,8 @@ const regions: Region[] = [
 ];
 
 export function NetworkMapMock({ className }: { className?: string }) {
+  const { locale } = useLocale();
+  const t = locale.networkMap;
   const reduced = usePrefersReducedMotion();
 
   return (
@@ -75,11 +78,11 @@ export function NetworkMapMock({ className }: { className?: string }) {
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
         </div>
         <span className="hidden truncate font-mono text-[11px] text-slate-500 sm:block">
-          gateway.securitychain.example
+          {t.gateway}
         </span>
         <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1 font-mono text-[10px] text-emerald-300">
           <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-          Network: collecting
+          {t.networkCollecting}
         </span>
       </div>
 
@@ -108,7 +111,7 @@ export function NetworkMapMock({ className }: { className?: string }) {
           viewBox="0 0 340 140"
           className="h-auto w-full"
           role="img"
-          aria-label="Probe regions Seoul, Tokyo and London streaming signed observations to the TLSweep gateway"
+          aria-label={`${regions.map(r => r.name).join(", ")} ${t.probesLabel}`}
         >
           {regions.map((r) => (
             <path key={`p-${r.code}`} d={r.path} fill="none" stroke="#334155" strokeWidth="1.4" className="svg-dash" />
@@ -179,35 +182,35 @@ export function NetworkMapMock({ className }: { className?: string }) {
           <div className="flex items-center justify-between gap-2">
             <span className="flex items-center gap-2 font-mono text-xs font-medium text-rose-300">
               <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-rose-400" aria-hidden="true" />
-              key_change detected
+              {t.keyChange}
             </span>
             <span className="font-mono text-[10px] text-slate-600">evt_8f3ka2</span>
           </div>
           <dl className="mt-3 space-y-1.5 font-mono text-[11px] sm:text-xs">
             <div className="flex items-baseline justify-between gap-4">
-              <dt className="text-slate-500">domain</dt>
+              <dt className="text-slate-500">{t.domain}</dt>
               <dd className="truncate text-slate-200">portal.acme.example</dd>
             </div>
             <div className="flex items-baseline justify-between gap-4">
-              <dt className="text-slate-500">issuer</dt>
+              <dt className="text-slate-500">{t.issuer}</dt>
               <dd className="truncate text-slate-200">Google Trust Services / WR2</dd>
             </div>
             <div className="flex items-center justify-between gap-4">
-              <dt className="text-slate-500">confidence</dt>
+              <dt className="text-slate-500">{t.confidence}</dt>
               <dd className="flex items-center gap-1 text-emerald-300">
                 {["SEL", "TYO", "LON"].map((c) => (
                   <span key={c} className="rounded border border-emerald-400/25 bg-emerald-400/10 px-1 py-0.5 text-[9px]">
                     {c}
                   </span>
                 ))}
-                <span className="ml-1">3/3 probes</span>
+                <span className="ml-1">3/3 {t.probesLabel}</span>
               </dd>
             </div>
             <div className="flex items-baseline justify-between gap-4">
-              <dt className="text-slate-500">anchoring</dt>
+              <dt className="text-slate-500">{t.anchoring}</dt>
               <dd className="flex items-center gap-1.5 text-amber-300">
                 <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-amber-400" aria-hidden="true" />
-                pending Merkle batch
+                {t.pendingBatch}
               </dd>
             </div>
           </dl>

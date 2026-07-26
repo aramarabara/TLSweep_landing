@@ -12,8 +12,17 @@ import { OpenSourceSection } from "@/components/OpenSourceSection";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
+import { LocaleProvider } from "@/lib/locales";
 
 export default function App() {
+  return (
+    <LocaleProvider>
+      <AppContent />
+    </LocaleProvider>
+  );
+}
+
+function AppContent() {
   return (
     <div className="relative min-h-screen overflow-x-clip bg-[#020617] font-sans text-slate-50">
       <a

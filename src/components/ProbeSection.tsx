@@ -1,7 +1,23 @@
 import { Apple, CheckCircle2, Download, Fingerprint, XCircle } from "lucide-react";
 import { Badge, Button, Card, CopyButton, CountUp, Reveal, Section, SectionHeading } from "@/components/ui";
-import { dockerCommand, probeFeatures } from "@/lib/data";
+import { dockerCommand } from "@/lib/data";
+import { useLocale } from "@/lib/locales";
 import { useInView } from "@/lib/hooks";
+
+interface ProbeFeature {
+  tone: "yes" | "no" | "only";
+}
+
+const probeFeatures: ProbeFeature[] = [
+  { tone: "yes" },
+  { tone: "yes" },
+  { tone: "yes" },
+  { tone: "yes" },
+  { tone: "yes" },
+  { tone: "no" },
+  { tone: "no" },
+  { tone: "only" },
+];
 
 function DockerGlyph({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -39,20 +55,22 @@ function StatusRow({ label, value, tone }: { label: string; value: string; tone?
 }
 
 export function ProbeSection() {
+  const { locale } = useLocale();
+  const t = locale.probe;
+
   return (
     <Section id="probe" className="border-t border-slate-800/50 bg-slate-950/40">
       <SectionHeading
-        eyebrow="Run a probe"
+        eyebrow={t.eyebrow}
         title={
           <>
-            <span className="block">Run a lightweight probe.</span>
-            <span className="block text-emerald-300">Earn access credits.</span>
+            <span className="block">{t.title1}</span>
+            <span className="block text-emerald-300">{t.title2}</span>
           </>
         }
-        sub="A TLSweep probe is a small Go client that observes assigned domains, signs results, queues safely during outages, and retries with jitter to avoid burst traffic."
+        sub={t.sub}
       />
 
-      {/* download cards */}
       <div id="download" className="mt-12 grid scroll-mt-24 gap-4 lg:grid-cols-3">
         <Reveal className="h-full">
           <Card className="flex h-full flex-col p-6">
@@ -60,16 +78,14 @@ export function ProbeSection() {
               <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-400/10 text-cyan-300">
                 <DockerGlyph />
               </span>
-              <Badge tone="cyan">recommended</Badge>
+              <Badge tone="cyan">{t.recommended}</Badge>
             </div>
-            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">Docker Probe</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
-              Best for servers, homelabs, VPS, and researchers.
-            </p>
+            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">{t.dockerTitle}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{t.dockerDesc}</p>
             <div className="mt-4 flex-1 rounded-xl border border-emerald-400/15 bg-black/70 p-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
-                  shell
+                  {t.shell}
                 </span>
                 <CopyButton text={dockerCommand} />
               </div>
@@ -77,9 +93,7 @@ export function ProbeSection() {
                 {dockerCommand}
               </pre>
             </div>
-            <p className="mt-3 font-mono text-[11px] text-slate-600">
-              image · securitychain/probe:latest
-            </p>
+            <p className="mt-3 font-mono text-[11px] text-slate-600">{t.imageLabel}</p>
           </Card>
         </Reveal>
 
@@ -88,16 +102,14 @@ export function ProbeSection() {
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/60 text-slate-200">
               <Apple className="h-5 w-5" />
             </span>
-            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">macOS Probe</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
-              Menu bar client with simple connected / retrying / offline states.
-            </p>
+            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">{t.macTitle}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{t.macDesc}</p>
             <div className="flex-1" />
             <Button variant="secondary" href="/downloads/securitychain-probe-macos" className="mt-6 w-full">
               <Download className="h-4 w-4" />
-              Download for macOS
+              {t.downloadMac}
             </Button>
-            <p className="mt-3 font-mono text-[11px] text-slate-600">universal · macOS 13+ · ~14 MB</p>
+            <p className="mt-3 font-mono text-[11px] text-slate-600">{t.macMeta}</p>
           </Card>
         </Reveal>
 
@@ -106,10 +118,8 @@ export function ProbeSection() {
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-800/60 text-slate-200">
               <WindowsGlyph />
             </span>
-            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">Windows Probe</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
-              System tray client with lightweight background scanning.
-            </p>
+            <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">{t.winTitle}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{t.winDesc}</p>
             <div className="flex-1" />
             <Button
               variant="secondary"
@@ -117,23 +127,20 @@ export function ProbeSection() {
               className="mt-6 w-full"
             >
               <Download className="h-4 w-4" />
-              Download for Windows
+              {t.downloadWin}
             </Button>
-            <p className="mt-3 font-mono text-[11px] text-slate-600">x64 · Windows 10+ · tray client</p>
+            <p className="mt-3 font-mono text-[11px] text-slate-600">{t.winMeta}</p>
           </Card>
         </Reveal>
       </div>
 
-      {/* features + live status */}
       <div className="mt-6 grid gap-4 lg:grid-cols-5">
         <Reveal className="h-full lg:col-span-3">
           <Card hover={false} className="h-full p-6">
-            <h3 className="font-display text-base font-semibold text-slate-100">
-              What the probe does — and never does
-            </h3>
+            <h3 className="font-display text-base font-semibold text-slate-100">{t.featureTitle}</h3>
             <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
-              {probeFeatures.map((f) => (
-                <li key={f.label} className="flex items-center gap-2.5 text-sm text-slate-300">
+              {probeFeatures.map((f, i) => (
+                <li key={i} className="flex items-center gap-2.5 text-sm text-slate-300">
                   {f.tone === "yes" ? (
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
                   ) : null}
@@ -141,12 +148,12 @@ export function ProbeSection() {
                   {f.tone === "only" ? (
                     <Fingerprint className="h-4 w-4 shrink-0 text-cyan-400" />
                   ) : null}
-                  {f.label}
+                  {t.features[i].label}
                 </li>
               ))}
             </ul>
             <p className="mt-5 border-t border-slate-800/70 pt-4 font-mono text-[11px] text-slate-600">
-              passive observation only — TLS handshakes and DNS lookups, nothing else
+              {t.featureFootnote}
             </p>
           </Card>
         </Reveal>
@@ -154,30 +161,28 @@ export function ProbeSection() {
         <Reveal delay={120} className="h-full lg:col-span-2">
           <Card hover={false} className="flex h-full flex-col p-6">
             <div className="flex items-center justify-between gap-2">
-              <span className="font-mono text-[11px] text-slate-500">probe tray — seoul-01</span>
+              <span className="font-mono text-[11px] text-slate-500">{t.probeTray}</span>
               <span className="flex items-center gap-1.5 font-mono text-xs text-emerald-300">
                 <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-                Connected
+                {t.connected}
               </span>
             </div>
             <dl className="mt-4 space-y-2 font-mono text-xs">
-              <StatusRow label="Region" value="Seoul" />
-              <StatusRow label="Consensus participation" value="active" tone="text-emerald-300" />
-              <StatusRow label="Queued events" value="0" />
+              <StatusRow label={t.region} value="Seoul" />
+              <StatusRow label={t.consensusParticipation} value={t.active} tone="text-emerald-300" />
+              <StatusRow label={t.queuedEvents} value="0" />
             </dl>
             <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950/60 p-4">
               <div className="flex items-baseline justify-between">
-                <span className="font-mono text-[11px] text-slate-500">Credits earned today</span>
+                <span className="font-mono text-[11px] text-slate-500">{t.creditsToday}</span>
                 <span className="font-display text-2xl font-bold text-cyan-300">
                   <CountUp to={128} duration={1200} />
                 </span>
               </div>
               <CreditsMeter />
-              <p className="mt-2 font-mono text-[10px] text-slate-600">rolling 24h · verified observations only</p>
+              <p className="mt-2 font-mono text-[10px] text-slate-600">{t.creditsSub}</p>
             </div>
-            <p className="mt-auto pt-4 font-mono text-[10px] text-slate-600">
-              signed with probe key · region slot sel-07
-            </p>
+            <p className="mt-auto pt-4 font-mono text-[10px] text-slate-600">{t.signedWith}</p>
           </Card>
         </Reveal>
       </div>

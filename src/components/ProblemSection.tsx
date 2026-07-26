@@ -1,5 +1,5 @@
 import { Card, Reveal, Section, SectionHeading } from "@/components/ui";
-import { problemCards } from "@/lib/data";
+import { useLocale } from "@/lib/locales";
 import { cn } from "@/utils/cn";
 
 const hairline: Record<string, string> = {
@@ -13,6 +13,17 @@ const numberTone: Record<string, string> = {
   emerald: "text-emerald-400/70",
   indigo: "text-indigo-400/70",
 };
+
+interface ProblemCard {
+  n: string;
+  accent: "cyan" | "emerald" | "indigo";
+}
+
+const cards: ProblemCard[] = [
+  { n: "01", accent: "cyan" },
+  { n: "02", accent: "emerald" },
+  { n: "03", accent: "indigo" },
+];
 
 function Glyph({ accent }: { accent: "cyan" | "emerald" | "indigo" }) {
   const stroke = accent === "cyan" ? "#22d3ee" : accent === "emerald" ? "#34d399" : "#818cf8";
@@ -51,20 +62,23 @@ function Glyph({ accent }: { accent: "cyan" | "emerald" | "indigo" }) {
 }
 
 export function ProblemSection() {
+  const { locale } = useLocale();
+  const t = locale.problem;
+
   return (
     <Section id="problem" className="pt-16 sm:pt-20">
       <SectionHeading
-        eyebrow="The problem"
+        eyebrow={t.eyebrow}
         title={
           <>
-            <span className="block">Checking one certificate is easy.</span>
-            <span className="block text-slate-400">Tracking the internet is not.</span>
+            <span className="block">{t.title1}</span>
+            <span className="block text-slate-400">{t.title2}</span>
           </>
         }
       />
 
       <div className="mt-12 grid gap-4 md:grid-cols-3">
-        {problemCards.map((card, i) => (
+        {cards.map((card, i) => (
           <Reveal key={card.n} delay={i * 110} className="h-full">
             <Card className="relative h-full overflow-hidden p-6">
               <span
@@ -78,8 +92,8 @@ export function ProblemSection() {
                 <Glyph accent={card.accent} />
                 <span className={cn("font-mono text-xs", numberTone[card.accent])}>/ {card.n}</span>
               </div>
-              <h3 className="mt-5 font-display text-lg font-semibold text-slate-50">{card.title}</h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-slate-400">{card.body}</p>
+              <h3 className="mt-5 font-display text-lg font-semibold text-slate-50">{t.cards[i].title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-slate-400">{t.cards[i].body}</p>
             </Card>
           </Reveal>
         ))}

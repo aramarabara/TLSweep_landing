@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "notion": {
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp",
+      "enabled": true,
+      "oauth": {}
+    }
+  },
+  "permission": {
+    "notion*":   "allow",
+    "bash": {
+      "rm -rf":     "deny",
+      "rm -rf /*":  "deny",
+      "dd":         "deny",
+      "mkfs*":      "deny",
+      "shutdown":   "deny",
+      "reboot":     "deny",
+      "poweroff":   "deny",
+      "halt":       "deny",
+      "init 0":     "deny",
+      "init 6":     "deny",
+      "chmod -R":   "deny",
+      "chown -R":   "deny",
+      "> /dev":     "deny",
+      "> /dev/sd*": "deny",
+      "":           "deny",
+      "*":          "allow"
+    },
+    "*": "allow"
+  }
+}

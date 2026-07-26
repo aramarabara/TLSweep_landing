@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { ArrowRight, Database, Link2 } from "lucide-react";
 import { Card, Reveal, Section, SectionHeading } from "@/components/ui";
-import { archFlow, offChainStack, onChainStack } from "@/lib/data";
+import { useLocale } from "@/lib/locales";
 import { cn } from "@/utils/cn";
 
 const nodeTone: Record<string, string> = {
@@ -10,16 +10,33 @@ const nodeTone: Record<string, string> = {
   indigo: "border-indigo-400/30 bg-indigo-400/5 text-indigo-200",
 };
 
+interface ArchNode {
+  label: string;
+  sub: string;
+  tone: "cyan" | "emerald" | "indigo";
+}
+
+const archFlow: ArchNode[] = [
+  { label: "Probes", sub: "edge regions", tone: "cyan" },
+  { label: "Gateway API", sub: "off-chain", tone: "cyan" },
+  { label: "Consensus", sub: "off-chain", tone: "cyan" },
+  { label: "TimescaleDB", sub: "off-chain", tone: "cyan" },
+  { label: "Merkle batcher", sub: "bridge", tone: "emerald" },
+  { label: "Anchor", sub: "on-chain", tone: "indigo" },
+];
+
 export function ArchitectureSection() {
+  const { locale } = useLocale();
+  const t = locale.architecture;
+
   return (
     <Section id="architecture">
       <SectionHeading
-        eyebrow="Architecture"
-        title="Pragmatic architecture, not blockchain theater."
-        sub="Heavy data stays in a normal warehouse. The chain only ever sees accounting state and compact commitments."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        sub={t.sub}
       />
 
-      {/* flow diagram */}
       <Reveal delay={100} className="mt-10">
         <Card hover={false} className="overflow-x-auto p-5">
           <div className="flex min-w-max items-center gap-2">
@@ -44,19 +61,18 @@ export function ArchitectureSection() {
           </div>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 border-t border-slate-800/70 pt-3 font-mono text-[10px] text-slate-500">
             <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" /> off-chain
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" /> {t.legendOffChain}
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" /> bridge
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" /> {t.legendBridge}
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" aria-hidden="true" /> on-chain
+              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" aria-hidden="true" /> {t.legendOnChain}
             </span>
           </div>
         </Card>
       </Reveal>
 
-      {/* two columns */}
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <Reveal className="h-full">
           <Card hover={false} className="h-full p-6">
@@ -65,14 +81,14 @@ export function ArchitectureSection() {
                 <Database className="h-5 w-5 text-cyan-300" />
               </span>
               <div>
-                <h3 className="font-display text-lg font-semibold text-slate-50">Off-chain</h3>
+                <h3 className="font-display text-lg font-semibold text-slate-50">{t.offChainTitle}</h3>
                 <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
-                  the data warehouse
+                  {t.offChainSub}
                 </p>
               </div>
             </div>
             <ul className="mt-5 grid grid-cols-2 gap-2">
-              {offChainStack.map((item) => (
+              {t.offChainStack.map((item) => (
                 <li
                   key={item}
                   className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2 font-mono text-xs text-slate-300 transition-colors duration-200 hover:border-cyan-400/40 hover:text-cyan-200"
@@ -91,14 +107,14 @@ export function ArchitectureSection() {
                 <Link2 className="h-5 w-5 text-indigo-300" />
               </span>
               <div>
-                <h3 className="font-display text-lg font-semibold text-slate-50">On-chain</h3>
+                <h3 className="font-display text-lg font-semibold text-slate-50">{t.onChainTitle}</h3>
                 <p className="font-mono text-[10px] uppercase tracking-widest text-slate-600">
-                  the accounting ledger
+                  {t.onChainSub}
                 </p>
               </div>
             </div>
             <ul className="mt-5 grid grid-cols-2 gap-2">
-              {onChainStack.map((item) => (
+              {t.onChainStack.map((item) => (
                 <li
                   key={item}
                   className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2 font-mono text-xs text-slate-300 transition-colors duration-200 hover:border-indigo-400/40 hover:text-indigo-200"
@@ -111,7 +127,6 @@ export function ArchitectureSection() {
         </Reveal>
       </div>
 
-      {/* callout */}
       <Reveal delay={140} className="mt-6">
         <Card hover={false} className="relative overflow-hidden p-6 text-center sm:p-10">
           <div
@@ -119,8 +134,8 @@ export function ArchitectureSection() {
             aria-hidden="true"
           />
           <p className="relative mx-auto max-w-2xl font-display text-xl font-semibold leading-snug text-slate-100 sm:text-2xl">
-            The blockchain layer does not store the whole internet.{" "}
-            <span className="text-slate-400">It stores accounting state and compact proofs.</span>
+            {t.callout}{" "}
+            <span className="text-slate-400">{t.calloutAccent}</span>
           </p>
         </Card>
       </Reveal>

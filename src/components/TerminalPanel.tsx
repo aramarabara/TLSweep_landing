@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/utils/cn";
+import { useLocale } from "@/lib/locales";
 import { usePrefersReducedMotion } from "@/lib/hooks";
 
 export interface TermLine {
   text: string;
   cmd?: boolean;
 }
-
-const DEFAULT_LINES: TermLine[] = [
-  { text: "securitychain-probe start", cmd: true },
-  { text: "region verified: seoul" },
-  { text: "gateway: connected" },
-  { text: "scan assignment: tranco-h1-clean" },
-  { text: "observations: streaming" },
-];
 
 function OutLine({ text }: { text: string }) {
   const idx = text.indexOf(":");
@@ -27,14 +20,18 @@ function OutLine({ text }: { text: string }) {
 }
 
 export function TerminalPanel({
-  lines = DEFAULT_LINES,
-  title = "probe — seoul-01",
+  lines: propLines,
+  title: propTitle,
   className,
 }: {
   lines?: TermLine[];
   title?: string;
   className?: string;
 }) {
+  const { locale } = useLocale();
+  const defaultLines: TermLine[] = locale.terminal.defaultLines.map((l) => ({ text: l }));
+  const lines = propLines ?? defaultLines;
+  const resolvedTitle = propTitle ?? locale.terminal.defaultTitle;
   const reduced = usePrefersReducedMotion();
   const [pos, setPos] = useState(() => ({
     li: reduced ? lines.length : 0,
@@ -87,7 +84,7 @@ export function TerminalPanel({
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
         </div>
-        <span className="font-mono text-[11px] text-emerald-300/60">{title}</span>
+        <span className="font-mono text-[11px] text-emerald-300/60">{resolvedTitle}</span>
       </div>
       <div className="p-4 font-mono text-[12.5px] leading-6 sm:text-[13px]">
         {lines.slice(0, shownCount).map((line, i) => {

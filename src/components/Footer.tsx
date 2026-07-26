@@ -1,8 +1,12 @@
 import { cn } from "@/utils/cn";
-import { footerCols, researchStats } from "@/lib/data";
+import { researchStats } from "@/lib/data";
+import { useLocale } from "@/lib/locales";
 import { Logo, containerCls } from "@/components/ui";
 
 export function Footer() {
+  const { locale } = useLocale();
+  const t = locale.footer;
+
   return (
     <footer className="relative border-t border-slate-800/70 bg-slate-950/80">
       <div className={cn(containerCls, "grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:grid-cols-[1.5fr_repeat(4,1fr)]")}>
@@ -10,20 +14,19 @@ export function Footer() {
           <a href="#overview" className="flex items-center gap-2.5" aria-label="TLSweep — back to top">
             <Logo className="h-7 w-7" />
             <span className="font-display text-[17px] font-semibold tracking-tight text-slate-50">
-              Security<span className="text-cyan-400">Chain</span>
+              {locale.navbar.logo}<span className="text-cyan-400">{locale.navbar.logoAccent}</span>
             </span>
           </a>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
-            Distributed TLS and DNS change intelligence — observed by probes, confirmed by
-            consensus, anchored by proofs.
+            {t.description}
           </p>
           <p className="mt-5 flex items-center gap-2 font-mono text-[11px] text-slate-600">
             <span className="pulse-soft h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-            network: collecting — {researchStats.regions}
+            {t.networkLabel} {researchStats.regions}
           </p>
         </div>
 
-        {footerCols.map((col) => (
+        {t.columns.map((col) => (
           <nav key={col.title} aria-label={`Footer — ${col.title}`}>
             <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500">
               {col.title}
@@ -59,12 +62,12 @@ export function Footer() {
           )}
         >
           <p className="text-sm text-slate-500">
-            TLSweep — Distributed TLS and DNS change intelligence.
+            {t.description}
           </p>
           <div className="flex items-center gap-5 font-mono text-[11px] text-slate-600">
-            <span>© 2026 TLSweep Research</span>
+            <span>{t.copyright}</span>
             <a href="#overview" className="transition-colors hover:text-cyan-300">
-              back to top ↑
+              {t.backToTop}
             </a>
           </div>
         </div>

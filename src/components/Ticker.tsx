@@ -1,5 +1,6 @@
 import { tickerEvents } from "@/lib/data";
 import { cn } from "@/utils/cn";
+import { useLocale } from "@/lib/locales";
 
 const tagTone: Record<string, string> = {
   SEL: "text-cyan-400/80",
@@ -19,10 +20,11 @@ const typeTone: Record<string, string> = {
 };
 
 export function Ticker() {
+  const { locale } = useLocale();
   return (
     <div
       className="ticker relative overflow-hidden border-y border-slate-800/70 bg-slate-950/80"
-      aria-label="Simulated live certificate event feed"
+      aria-label={locale.ticker.label}
     >
       <div className="ticker-track flex w-max items-center">
         {[0, 1].map((dup) => (

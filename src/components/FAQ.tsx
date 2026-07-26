@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Reveal, Section, SectionHeading } from "@/components/ui";
-import { faqs } from "@/lib/data";
+import { useLocale } from "@/lib/locales";
 import { cn } from "@/utils/cn";
 
 export function FAQ() {
+  const { locale } = useLocale();
+  const t = locale.faq;
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <Section id="faq">
       <SectionHeading
-        eyebrow="FAQ"
-        title="Questions, answered plainly."
-        sub="The things security engineers ask before pointing a probe at their network."
+        eyebrow={t.eyebrow}
+        title={t.title}
+        sub={t.sub}
         center
       />
 
       <div className="mx-auto mt-10 max-w-3xl space-y-3">
-        {faqs.map((faq, i) => {
+        {t.items.map((faq, i) => {
           const isOpen = open === i;
           return (
             <Reveal key={faq.q} delay={i * 40}>

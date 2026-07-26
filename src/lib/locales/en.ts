@@ -364,9 +364,8 @@ const en: Locale = {
         title: "Project",
         links: [
           { label: "Overview", href: "#overview" },
-          { label: "Research", href: "#research" },
-          { label: "Architecture", href: "#architecture" },
-          { label: "FAQ", href: "#faq" },
+    { label: "Research", href: "#research" },
+    { label: "FAQ", href: "#faq" },
         ],
       },
       {

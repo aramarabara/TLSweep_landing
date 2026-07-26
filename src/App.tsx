@@ -7,7 +7,6 @@ import { ResearchSnapshot } from "@/components/ResearchSnapshot";
 import { ProbeSection } from "@/components/ProbeSection";
 import { DataProducts } from "@/components/DataProducts";
 import { IncentiveModel } from "@/components/IncentiveModel";
-import { ArchitectureSection } from "@/components/ArchitectureSection";
 import { OpenSourceSection } from "@/components/OpenSourceSection";
 import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -50,7 +49,6 @@ function AppContent() {
           <ProbeSection />
           <DataProducts />
           <IncentiveModel />
-          <ArchitectureSection />
           <OpenSourceSection />
           <FAQ />
           <FinalCTA />

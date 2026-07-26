@@ -28,7 +28,7 @@ const ko: Locale = {
       "오프체인 데이터, 온체인 증명",
       "TLS + DNS 인텔리전스",
     ],
-    headline1: "지역을 넘나드는 인증서 인텔리전스,",
+    headline1: "지역을 넘나드는 인증서,",
     headline2: "프로브가 검증합니다.",
     description:
       "TLSweep은 여러 리전의 공개 TLS 인증서 및 DNS 변경사항을 추적하고, 독립적인 프로브를 통해 관측을 검증하며, 확인된 이벤트를 변조 방지 Merkle 증명으로 앵커링합니다.",
@@ -57,7 +57,7 @@ const ko: Locale = {
   problem: {
     eyebrow: "문제점",
     title1: "인증서 하나 확인은 쉽습니다.",
-    title2: "인터넷 전체를 추적하는 것은 아닙니다.",
+    title2: "인터넷 전체를 추적하는 것은 어렵습니다.",
     cards: [
       {
         title: "시계열 사각지대",
@@ -87,13 +87,13 @@ const ko: Locale = {
   howItWorks: {
     eyebrow: "작동 방식",
     title: "간단한 파이프라인. 검증 가능한 결과.",
-    sub: "관측 데이터는 가벼운 엣지 프로브에서 변조 방지 앵커까지 흐릅니다 — 모든 단계를 검사할 수 있습니다.",
+    sub: "관측 데이터는 투명합니다.",
     pipelineLabel: "데이터 파이프라인 단계",
     stepPrefix: "단계",
     onChainTitle: "온체인",
     offChainTitle: "오프체인",
-    onChainDesc: "은 회계 원장입니다.",
-    offChainDesc: "은 데이터 웨어하우스입니다.",
+    onChainDesc: "",
+    offChainDesc: "",
     steps: [
       {
         title: "프로브 관측",
@@ -253,36 +253,20 @@ const ko: Locale = {
   },
 
   architecture: {
-    eyebrow: "아키텍처",
-    title: "실용적인 아키텍처, 블록체인 쇼가 아닙니다.",
-    sub: "무거운 데이터는 일반 웨어하우스에 남습니다. 체인은 회계 상태와 간결한 커밋먼트만 봅니다.",
-    offChainTitle: "오프체인",
-    offChainSub: "데이터 웨어하우스",
-    onChainTitle: "온체인",
-    onChainSub: "회계 원장",
-    legendOffChain: "오프체인",
-    legendBridge: "브릿지",
-    legendOnChain: "온체인",
-    callout: "블록체인 레이어는 전체 인터넷을 저장하지 않습니다.",
-    calloutAccent: "회계 상태와 간결한 증명을 저장합니다.",
-    offChainStack: [
-      "게이트웨이 API",
-      "합의 엔진",
-      "TimescaleDB",
-      "Redis",
-      "NATS",
-      "워치리스트 API",
-      "웹훅 전송",
-      "프로브 조정",
-    ],
-    onChainStack: [
-      "크레딧 원장",
-      "프로브 레지스트리",
-      "리전 슬롯 예치금",
-      "디스커버리 에스크로",
-      "Merkle 루트 앵커링",
-      "변조 방지 이벤트 검증",
-    ],
+    eyebrow: "",
+    title: "",
+    sub: "",
+    offChainTitle: "Off-chain",
+    offChainSub: "",
+    onChainTitle: "On-chain",
+    onChainSub: "",
+    legendOffChain: "off-chain",
+    legendBridge: "bridge",
+    legendOnChain: "on-chain",
+    callout: "",
+    calloutAccent: "",
+    offChainStack: [],
+    onChainStack: [],
   },
 
   openSource: {
@@ -342,7 +326,7 @@ const ko: Locale = {
   },
 
   finalCta: {
-    badge: "// 네트워크 참여",
+    badge: "",
     title: "인증서 인텔리전스 레이어 구축에 동참하세요.",
     body: "프로브를 실행하고, 도메인을 모니터링하거나, 수천에서 수백만 건의 관측으로 확장하는 리서치를 따라오세요.",
     confirmed: "확인 완료 — 리서치 웨이트리스트에 등록되었습니다. 마일스톤 소식만 발송, 스팸 없음.",
@@ -365,7 +349,6 @@ const ko: Locale = {
         links: [
           { label: "개요", href: "#overview" },
           { label: "리서치", href: "#research" },
-          { label: "아키텍처", href: "#architecture" },
           { label: "FAQ", href: "#faq" },
         ],
       },

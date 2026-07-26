@@ -14,8 +14,8 @@ const en: Locale = {
   ],
 
   navbar: {
-    logo: "Security",
-    logoAccent: "Chain",
+    logo: "TLSweep",
+    logoAccent: "",
     github: "GitHub",
     runAProbe: "Run a Probe",
     toggleMenu: "Toggle navigation menu",
@@ -145,7 +145,7 @@ const en: Locale = {
     dockerTitle: "Docker Probe",
     dockerDesc: "Best for servers, homelabs, VPS, and researchers.",
     shell: "shell",
-    imageLabel: "image \u00b7 securitychain/probe:latest",
+    imageLabel: "image \u00b7 tlsweep/probe:latest",
     macTitle: "macOS Probe",
     macDesc: "Menu bar client with simple connected / retrying / offline states.",
     downloadMac: "Download for macOS",
@@ -372,7 +372,7 @@ const en: Locale = {
       {
         title: "Developers",
         links: [
-          { label: "GitHub", href: "https://github.com/securitychain", external: true },
+          { label: "GitHub", href: "https://github.com/tlsweep", external: true },
           { label: "Docs", href: "/docs" },
           { label: "API", href: "#data" },
           { label: "Merkle verification", href: "#how-it-works" },
@@ -399,7 +399,7 @@ const en: Locale = {
   },
 
   networkMap: {
-    gateway: "gateway.securitychain.example",
+    gateway: "gateway.tlsweep.example",
     networkCollecting: "Network: collecting",
     keyChange: "key_change detected",
     domain: "domain",
@@ -413,7 +413,7 @@ const en: Locale = {
   terminal: {
     defaultTitle: "probe \u2014 seoul-01",
     defaultLines: [
-      "securitychain-probe start",
+      "tlsweep-probe start",
       "region verified: seoul",
       "gateway: connected",
       "scan assignment: tranco-h1-clean",

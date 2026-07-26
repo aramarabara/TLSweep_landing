@@ -54,7 +54,7 @@ export function OpenSourceSection() {
               <div className="flex min-w-0 items-center gap-2.5">
                 <GitHubIcon className="h-4 w-4 shrink-0 text-slate-400" />
                 <span className="truncate font-mono text-sm text-slate-200">
-                  securitychain<span className="text-slate-600"> / </span>
+                  tlsweep<span className="text-slate-600"> / </span>
                   <span className="font-semibold text-cyan-300">probe</span>
                 </span>
               </div>

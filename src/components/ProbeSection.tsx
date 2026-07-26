@@ -105,7 +105,7 @@ export function ProbeSection() {
             <h3 className="mt-4 font-display text-lg font-semibold text-slate-50">{t.macTitle}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{t.macDesc}</p>
             <div className="flex-1" />
-            <Button variant="secondary" href="/downloads/securitychain-probe-macos" className="mt-6 w-full">
+            <Button variant="secondary" href="/downloads/tlsweep-probe-macos" className="mt-6 w-full">
               <Download className="h-4 w-4" />
               {t.downloadMac}
             </Button>
@@ -123,7 +123,7 @@ export function ProbeSection() {
             <div className="flex-1" />
             <Button
               variant="secondary"
-              href="/downloads/securitychain-probe-windows.exe"
+              href="/downloads/tlsweep-probe-windows.exe"
               className="mt-6 w-full"
             >
               <Download className="h-4 w-4" />

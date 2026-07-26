@@ -56,11 +56,11 @@ export const tickerEvents = [
   { tag: "SEL", type: "issuer_change", domain: "static.fjord.example", detail: "DigiCert → GTS YE2" },
 ];
 
-export const dockerCommand = `docker run --name securitychain-probe \\
+export const dockerCommand = `docker run --name tlsweep-probe \\
   -e PROBE_KEY=your_key \\
-  -e GATEWAY_URL=https://gateway.securitychain.example \\
-  securitychain/probe:latest`;
+  -e GATEWAY_URL=https://gateway.tlsweep.example \\
+  tlsweep/probe:latest`;
 
-export const cloneCommand = "git clone https://github.com/securitychain/probe";
+export const cloneCommand = "git clone https://github.com/tlsweep/probe";
 
-export const ghUrl = "https://github.com/securitychain";
+export const ghUrl = "https://github.com/tlsweep";

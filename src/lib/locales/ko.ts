@@ -14,8 +14,8 @@ const ko: Locale = {
   ],
 
   navbar: {
-    logo: "시큐리티",
-    logoAccent: "체인",
+    logo: "TLSweep",
+    logoAccent: "",
     github: "GitHub",
     runAProbe: "프로브 실행",
     toggleMenu: "내비게이션 메뉴 토글",
@@ -145,7 +145,7 @@ const ko: Locale = {
     dockerTitle: "도커 프로브",
     dockerDesc: "서버, 홈랩, VPS 및 연구자에게 최적입니다.",
     shell: "쉘",
-    imageLabel: "이미지 · securitychain/probe:latest",
+    imageLabel: "이미지 · tlsweep/probe:latest",
     macTitle: "macOS 프로브",
     macDesc: "연결/재시도/오프라인 상태를 표시하는 메뉴 바 클라이언트입니다.",
     downloadMac: "macOS용 다운로드",
@@ -372,7 +372,7 @@ const ko: Locale = {
       {
         title: "개발자",
         links: [
-          { label: "GitHub", href: "https://github.com/securitychain", external: true },
+          { label: "GitHub", href: "https://github.com/tlsweep", external: true },
           { label: "문서", href: "/docs" },
           { label: "API", href: "#data" },
           { label: "Merkle 검증", href: "#how-it-works" },
@@ -399,7 +399,7 @@ const ko: Locale = {
   },
 
   networkMap: {
-    gateway: "gateway.securitychain.example",
+    gateway: "gateway.tlsweep.example",
     networkCollecting: "네트워크: 수집 중",
     keyChange: "키 변경 감지",
     domain: "도메인",
@@ -413,7 +413,7 @@ const ko: Locale = {
   terminal: {
     defaultTitle: "프로브 — seoul-01",
     defaultLines: [
-      "securitychain-probe 시작",
+      "tlsweep-probe 시작",
       "리전 확인됨: seoul",
       "게이트웨이: 연결됨",
       "스캔 할당: tranco-h1-clean",
